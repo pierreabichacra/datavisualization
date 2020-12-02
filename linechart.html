@@ -31,7 +31,7 @@
               "translate(" + margin.left + "," + margin.top + ")");
     
     // Parse the Data
-    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv", function(data) {
+    d3.csv("./csv/selfVSEmotionTimesCheckPhonePerHour.csv", function(data) {
     
     
       //////////
@@ -42,14 +42,19 @@
       var keys = data.columns.slice(1)
     
       // color palette
+      data = [data]
       var color = d3.scaleOrdinal()
         .domain(keys)
         .range(d3.schemeSet2);
     
       //stack the data?
+      console.log(keys)
+      console.log(data)
       var stackedData = d3.stack()
         .keys(keys)
         (data)
+
+        console.log(stackedData)
     
     
     
@@ -70,19 +75,19 @@
           .attr("text-anchor", "end")
           .attr("x", width)
           .attr("y", height+40 )
-          .text("Time (year)");
+          .text("Emotion Own Smartphone Usage");
     
       // Add Y axis label:
       svg.append("text")
           .attr("text-anchor", "end")
           .attr("x", 0)
           .attr("y", -20 )
-          .text("# of baby born")
+          .text("Emotions by time")
           .attr("text-anchor", "start")
     
       // Add Y axis
       var y = d3.scaleLinear()
-        .domain([0, 200000])
+        .domain([0, 400])
         .range([ height, 0 ]);
       svg.append("g")
         .call(d3.axisLeft(y).ticks(5))
