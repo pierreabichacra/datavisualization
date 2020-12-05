@@ -70,37 +70,15 @@
           .attr('x', -innerHeight / 2)
           .attr('y', -60)
           .attr('transform', `rotate(-90)`)
+          .attr('margin', `5px`)
           .style('text-anchor', 'middle')
           .text(yLabel);
-
-        let colortext = ""
-          console.log(typeof(colorLabel))
-        switch (colorLabel) {
-          case 1:
-            colortext = "Happy"
-            break;
-
-            case 2:
-              colortext = "SomeWhat Happy"
-              break;
-
-            case 3:
-              colortext = "SomeWhat UnHappy"
-              break;
-
-            case 4:
-              colortext = "UnHappy"
-              break;
-
-          default:
-            break;
-        }
 
       colorLegendG.append('text')
           .attr('class', 'legend-label')
           .attr('x', -30)
           .attr('y', -40)
-          .text(colortext);
+          .text(colorLabel);
 
       const xScale = d3.scaleLinear();
       const yScale = d3.scaleLinear();
@@ -154,10 +132,60 @@
             .attr('dy', '0.1em');
       });
 
+      $(function() {
+
+
+
+
+        let colortext = ""
+        let emotionState = ""
+        for (let index = 0; index < 5; index++) {
+          if(index == 4){
+            $(`body > svg > g > g:nth-child(3) > g > g:nth-child(5)`).remove()
+          }
+          let elmt =  $(`body > svg > g > g:nth-child(3) > g > g:nth-child(${index}) >  text`)
+
+          if(elmt.text() == "1"){
+            elmt.text("Happy")
+          }else if (elmt.text() == "2") {
+            elmt.text("SomeWhat Happy")
+          }else if (elmt.text() == "3") {
+            elmt.text("SomeWhat UnHappy")
+          }else if (elmt.text() == "4") {
+            elmt.text("UnHappy")
+          }
+        }
+
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(1)").hover(function() {
+          showOnlyBlue()
+        });
+
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(2)").hover(function() {
+          showOnlyOrange()
+        });
+
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(3)").hover(function() {
+          showOnlyGreen()
+        });
+
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(4)").hover(function() {
+          showOnlyRed()
+        });
+
+        const allColorSelectors = "body > svg > g > g:nth-child(3) > g > g:nth-child(1), body > svg > g > g:nth-child(3) > g > g:nth-child(2), body > svg > g > g:nth-child(3) > g > g:nth-child(3), body > svg > g > g:nth-child(3) > g > g:nth-child(4)";
+
+        $( `${allColorSelectors}` ).mouseleave( function(){showAll()} );
+
+
+      });
+
+
+
+
     </script>
 
     <script>
-      
+
     </script>
   </body>
 </html>

@@ -31,3 +31,13 @@ function showOnlyRed()
     $(`[fill='#1f77b4']`).hide()
 
 }
+
+function showAll()
+{
+
+    $(`[fill='#d62728']`).show()
+    $(`[fill='#2ca02c']`).show()
+    $(`[fill='#ff7f0e']`).show()
+    $(`[fill='#1f77b4']`).show()
+
+}
