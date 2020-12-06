@@ -142,6 +142,7 @@
         for (let index = 0; index < 5; index++) {
           if(index == 4){
             $(`body > svg > g > g:nth-child(3) > g > g:nth-child(5)`).remove()
+            $(`[fill='#9467bd']`).remove()
           }
           let elmt =  $(`body > svg > g > g:nth-child(3) > g > g:nth-child(${index}) >  text`)
 
