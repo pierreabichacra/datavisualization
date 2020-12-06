@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    /* set the CSS */
+    body {
+        font: 12px Arial;
+    }
+
+    path {
+        stroke: steelblue;
+        stroke-width: 2;
+        fill: none;
+    }
+
+    .bar rect:hover {
+        fill: orangered;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: grey;
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+    }
+
+    .legend {
+        font-size: 16px;
+        font-weight: bold;
+        text-anchor: middle;
+    }
+</style>
+
+<body>
+    <div id="d3id"></div>
+    <!-- load the d3.js library -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <script src="bar_script.js"></script>
+     
+</body>
