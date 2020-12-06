@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width">
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="./js/scripts.js"></script>
     <title>Basic Scatter Plot</title>
     <style>
       body {
@@ -18,23 +20,28 @@
       }
       .tick text, .legendCells text {
         fill: #8E8883;
-        font-size: 28pt;
+        font-size: 15pt;
         font-family: sans-serif;
       }
       .axis-label, .legend-label {
         fill: #635F5D;
-        font-size: 50pt;
+        font-size: 20pt;
         font-family: sans-serif;
       }
+
     </style>
   </head>
   <body>
-    <svg width="1000" height="700"></svg>
+    <svg width="1600" height="700"></svg>
     <script>
+
+
+
+
       const xValue = d => d.SelfReportTotalAppMins;
       const xLabel = 'Total time spent';
-      const yValue = d => d.SelfReportEmailMins;
-      const yLabel = 'emails time/Day';
+      const yValue = d => d.SelfReportGamingMins;
+      const yLabel = 'gaming time';
       const colorValue = d => d.EmotionTimeUsePhonePerDay;
       const colorLabel = 'Emotions';
       const margin = { left: 120, right: 300, top: 20, bottom: 120 };
@@ -64,6 +71,7 @@
           .attr('x', -innerHeight / 2)
           .attr('y', -60)
           .attr('transform', `rotate(-90)`)
+          .attr('margin', `5px`)
           .style('text-anchor', 'middle')
           .text(yLabel);
 
@@ -94,12 +102,12 @@
         .shape('circle');
 
       const row = d => {
-        d.SelfReportEmailMins = +d.SelfReportEmailMins;
+        d.SelfReportGamingMins = +d.SelfReportGamingMins;
         d.SelfReportTotalAppMins = +d.SelfReportTotalAppMins;
         return d;
       };
 
-      d3.csv('csv/SelfReportEmailMins.csv', row, data => {
+      d3.csv('csv/SelfReportGamingMins.csv', row, data => {
         xScale
           .domain(d3.extent(data, xValue))
           .range([0, innerWidth])
@@ -124,6 +132,61 @@
           .selectAll('.cell text')
             .attr('dy', '0.1em');
       });
+
+      $(function() {
+
+
+
+
+        let colortext = ""
+        let emotionState = ""
+        for (let index = 0; index < 5; index++) {
+          if(index == 4){
+            $(`body > svg > g > g:nth-child(3) > g > g:nth-child(5)`).remove()
+            $(`[fill='#9467bd']`).remove()
+          }
+          let elmt =  $(`body > svg > g > g:nth-child(3) > g > g:nth-child(${index}) >  text`)
+
+          if(elmt.text() == "1"){
+            elmt.text("Happy")
+          }else if (elmt.text() == "2") {
+            elmt.text("SomeWhat Happy")
+          }else if (elmt.text() == "3") {
+            elmt.text("SomeWhat UnHappy")
+          }else if (elmt.text() == "4") {
+            elmt.text("UnHappy")
+          }
+        }
+
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(1)").hover(function() {
+          showOnlyBlue()
+        });
+
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(2)").hover(function() {
+          showOnlyOrange()
+        });
+
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(3)").hover(function() {
+          showOnlyGreen()
+        });
+
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(4)").hover(function() {
+          showOnlyRed()
+        });
+
+        const allColorSelectors = "body > svg > g > g:nth-child(3) > g > g:nth-child(1), body > svg > g > g:nth-child(3) > g > g:nth-child(2), body > svg > g > g:nth-child(3) > g > g:nth-child(3), body > svg > g > g:nth-child(3) > g > g:nth-child(4)";
+
+        $( `${allColorSelectors}` ).mouseleave( function(){showAll()} );
+
+
+      });
+
+
+
+
+    </script>
+
+    <script>
 
     </script>
   </body>

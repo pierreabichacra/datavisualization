@@ -28,7 +28,6 @@
         font-size: 20pt;
         font-family: sans-serif;
       }
-
     </style>
   </head>
   <body>
@@ -40,8 +39,8 @@
 
       const xValue = d => d.SelfReportTotalAppMins;
       const xLabel = 'Total time spent';
-      const yValue = d => d.SelfReportSocialMediaMins;
-      const yLabel = 'Social time';
+      const yValue = d => d.SelfReportOtherAppsMins;
+      const yLabel = 'other apps time';
       const colorValue = d => d.EmotionTimeUsePhonePerDay;
       const colorLabel = 'Emotions';
       const margin = { left: 120, right: 300, top: 20, bottom: 120 };
@@ -102,12 +101,12 @@
         .shape('circle');
 
       const row = d => {
-        d.SelfReportSocialMediaMins = +d.SelfReportSocialMediaMins;
+        d.SelfReportOtherAppsMins = +d.SelfReportOtherAppsMins;
         d.SelfReportTotalAppMins = +d.SelfReportTotalAppMins;
         return d;
       };
 
-      d3.csv('csv/SelfReportSocialMediaMins.csv', row, data => {
+      d3.csv('csv/SelfReportOtherAppsMins.csv', row, data => {
         xScale
           .domain(d3.extent(data, xValue))
           .range([0, innerWidth])
