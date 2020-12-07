@@ -82,7 +82,7 @@ emotion.selectAll(".bar.east_count")
     .on("mouseover", function (d) {
         d3.select(this).style("fill", "ff9f1c"); return tooltip.style("visibility", "visible").text(d.emotion + " " + d.east_count + ", From total: " + (parseFloat(d.east_count * 100 / 141).toFixed(1)) + "%");
     })
-    .on("mousemove", function () {
+    .on("mousemove", function (d) {
         return tooltip.style("top",
             (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px").text(d.emotion + " " + d.east_count + ", From total: " + (parseFloat(d.east_count * 100 / 141).toFixed(1)) + "%");
     })
@@ -106,7 +106,7 @@ emotion.selectAll(".bar.west_count")
     .on("mouseover", function (d) {
         d3.select(this).style("fill", "2ec4b6"); return tooltip.style("visibility", "visible").text(d.emotion + " " + d.west_count + ", From total: " + (parseFloat(d.west_count * 100 / 249).toFixed(1)) + "%");
     })
-    .on("mousemove", function () {
+    .on("mousemove", function (d) {
         return tooltip.style("top",
             (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px").text(d.emotion + " " + d.west_count + ", From total: " + (parseFloat(d.west_count * 100 / 249).toFixed(1)) + "%");
     })
