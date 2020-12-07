@@ -23,7 +23,7 @@ const arc = d3.arc()
     .innerRadius(0)
     .outerRadius(radius);
 
-d3.json("../json/genderProcessed.json", function (data) {
+d3.json("json/genderProcessed.json", function (data) {
 
     d3.selectAll("input")
         .on("change", update);
@@ -68,7 +68,7 @@ d3.json("../json/genderProcessed.json", function (data) {
             })
             .on('mousemove', function (d) {
                 tooltip.style('top', (d3.event.layerY + 10) + 'px')
-                    .style('left', (d3.event.layerX + 10) + 'px');
+                    .style('left', (d3.event.layerX + 150) + 'px');
             });
 
         svg.append('text')

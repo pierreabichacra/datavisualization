@@ -4,7 +4,7 @@ var margin = {
     bottom: 50,
     left: 70
 },
-    outerWidth = 1800,
+    outerWidth = 1500,
     outerHeight = 500,
     width = outerWidth - margin.left - margin.right,
     height = outerHeight - margin.top - margin.bottom;
@@ -12,7 +12,7 @@ var margin = {
 var legendRectSize = 18;                                  // NEW
 var legendSpacing = 4;                                    // NEW
 
-d3.json("../json/locksUnlocksProcessing.json", function (data) {
+d3.json("json/locksUnlocksProcessing.json", function (data) {
 
     var lock_dict = [];
     var lock_dict2 = [];
@@ -43,11 +43,11 @@ d3.json("../json/locksUnlocksProcessing.json", function (data) {
     }
 
 
-    for (var i = 0; i < 35; i++) {
+    for (var i = 0; i < 20; i++) {
         gethighestVal_locks();
         lock_dict.push({
             "Dates": data["lock"][index_lock].Dates,
-            "NumberOfUsages": maxVal_lock,
+            "NumberOfOperations": maxVal_lock,
             "NumberOfUsers": data["lock"][index_lock].NumberOfUsers
         });
 
@@ -58,7 +58,7 @@ d3.json("../json/locksUnlocksProcessing.json", function (data) {
 
         unlock_dict.push({
             "Dates": data["unlock"][index_unlock].Dates,
-            "NumberOfUsages": maxVal_unlock,
+            "NumberOfOperations": maxVal_unlock,
             "NumberOfUsers": data["unlock"][index_unlock].NumberOfUsers
         })
 
@@ -138,7 +138,7 @@ d3.json("../json/locksUnlocksProcessing.json", function (data) {
         .attr("class", "y label")
         .attr("text-anchor", "end")
         .attr("y", -5)
-        .text("Usage");
+        .text("Operation");
 
 
     var objects = svg.append("svg")
@@ -171,7 +171,7 @@ d3.json("../json/locksUnlocksProcessing.json", function (data) {
             return x(d.Dates);
         })
         .attr("cy", function (d) {
-            return y(d.NumberOfUsages);
+            return y(d.NumberOfOperations);
         })
         .attr("fill", "brown")
         .on("mouseover", function () {
@@ -187,7 +187,7 @@ d3.json("../json/locksUnlocksProcessing.json", function (data) {
                 .style("visibility", "visible")
                 .html(function () {
                     return '<div style = "font-size: smaller"><b>Locks</b>' +
-                        '<p>Date: ' + d.Dates + '</p><p>Usages: ' + d.NumberOfUsages +
+                        '<p>Date: ' + d.Dates + '</p><p>Usages: ' + d.NumberOfOperations +
                         "</p><p>Number of Users: " + d.NumberOfUsers
                     '</div>';
                 })
@@ -205,7 +205,7 @@ d3.json("../json/locksUnlocksProcessing.json", function (data) {
             return x(d.Dates);
         })
         .attr("cy", function (d) {
-            return y(d.NumberOfUsages);
+            return y(d.NumberOfOperations);
         })
         .style("fill", "#69b3a2")
         .on("mouseover", function () {
@@ -221,7 +221,7 @@ d3.json("../json/locksUnlocksProcessing.json", function (data) {
                 .style("visibility", "visible")
                 .html(function () {
                     return '<div style = "font-size: smaller"><b>Unlocks</b>' +
-                        '<p>Date: ' + d.Dates + '</p><p>Usages: ' + d.NumberOfUsages +
+                        '<p>Date: ' + d.Dates + '</p><p>Usages: ' + d.NumberOfOperations +
                         "</p><p>Number of Users: " + d.NumberOfUsers
                     '</div>';
                 })
@@ -230,23 +230,23 @@ d3.json("../json/locksUnlocksProcessing.json", function (data) {
     var countLocks = 0, countUnlocks = 0;
 
 
-    svg.append("rect").attr("x", 1000).attr("y", 40)
+    svg.append("rect").attr("x", 1150).attr("y", 0)
         .attr("width", 15)
         .attr("height", 15)
         .on("click", function () { updateLocks() })
         .style("fill", "brown").style("cursor", "pointer");
 
-    svg.append("rect").attr("x", 1000).attr("y", 70)
+    svg.append("rect").attr("x", 1150).attr("y", 30)
         .attr("width", 15)
         .attr("height", 15)
         .on("click", function () { updateUnlocks() })
         .style("fill", "#69b3a2").style("cursor", "pointer");
 
-    svg.append("text").attr("x", 1020).attr("y", 50).text("Locks")
+    svg.append("text").attr("x", 1180).attr("y", 10).text("Locks")
         .on("click", function () { updateLocks() })
         .style("font-size", "15px").attr("alignment-baseline", "middle").style("cursor", "pointer");
 
-    svg.append("text").attr("x", 1020).attr("y", 80).text("Unlocks")
+    svg.append("text").attr("x", 1180).attr("y", 40).text("Unlocks")
         .on("click", function () { updateUnlocks() })
         .style("font-size", "15px").attr("alignment-baseline", "middle").style("cursor", "pointer");
 
@@ -274,7 +274,7 @@ d3.json("../json/locksUnlocksProcessing.json", function (data) {
                     return x(d.Dates);
                 })
                 .attr("cy", function (d) {
-                    return y(d.NumberOfUsages);
+                    return y(d.NumberOfOperations);
                 })
                 .on("end", function () {
                     d3.select(this)
@@ -320,7 +320,7 @@ d3.json("../json/locksUnlocksProcessing.json", function (data) {
                     return x(d.Dates);
                 })
                 .attr("cy", function (d) {
-                    return y(d.NumberOfUsages);
+                    return y(d.NumberOfOperations);
                 })
                 .on("end", function () {
                     d3.select(this)

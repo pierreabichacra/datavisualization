@@ -44,9 +44,8 @@ const light = [
     '#C8D7A1',
     '#A0B700'
 ];
-d3.json("../json/app_types_names_final.json", function (data) {
+d3.json("json/app_types_names_final.json", function (data) {
 
-    console.log(data);
     const root = partition(data);
 
     const palettes = [light, mid];
@@ -80,8 +79,8 @@ d3.json("../json/app_types_names_final.json", function (data) {
         .attr("d", d => arc(d.current))
         .on("mouseover", mouseover)
         .on('mousemove', function (d) {
-            tooltip.style('top', (d3.event.layerY + 10) + 'px');
-            tooltip.style('left', (d3.event.layerX + 10) + 'px')
+            tooltip.style('top', (d3.event.layerY + 300) + 'px');
+            tooltip.style('left', (d3.event.layerX + 250) + 'px')
         })
         .on('mouseout', function () {
             tooltip.style('display', 'none');
@@ -182,8 +181,6 @@ d3.json("../json/app_types_names_final.json", function (data) {
 
 
     function mouseover(d) {
-
-        console.log(d.value)
 
         var sequenceArray = getAncestors(d);
 

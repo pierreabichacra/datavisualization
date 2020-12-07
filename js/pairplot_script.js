@@ -9,7 +9,7 @@ var svg = d3.select("#d3id")
   .append("g")
   .attr("transform", "translate(" + marginWhole.left + "," + marginWhole.top + ")");
 
-d3.csv("FeaturesCorrelation.csv", function (data) {
+d3.csv("csv/FeaturesCorrelation.csv", function (data) {
   console.log(data);
   var allVar = ["Education", "Employment", "Age", "Sleep", "MinsSmartphone"]
   var numVar = allVar.length

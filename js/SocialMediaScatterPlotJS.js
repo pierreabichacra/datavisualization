@@ -1,85 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="./js/scripts.js"></script>
-    <title>Basic Scatter Plot</title>
-    <style>
-      body {
-        margin: 0px;
-      }
-      .domain {
-        display: none;
-      }
-      .tick line {
-        stroke: #C0C0BB;
-      }
-      .tick text, .legendCells text {
-        fill: #8E8883;
-        font-size: 15pt;
-        font-family: sans-serif;
-      }
-      .axis-label, .legend-label {
-        fill: #635F5D;
-        font-size: 20pt;
-        font-family: sans-serif;
-      }
-
-    </style>
-  </head>
-  <body>
-    <svg width="1600" height="700"></svg>
-    <script>
-function showOnlyBlue()
-{
-    $(`[fill='#1f77b4']`).show()
-    $(`[fill='#ff7f0e']`).hide()
-    $(`[fill='#2ca02c']`).hide()
-    $(`[fill='#d62728']`).hide()
-
-}
-function showOnlyOrange()
-{
-    $(`[fill='#ff7f0e']`).show()
-    $(`[fill='#1f77b4']`).hide()
-    $(`[fill='#2ca02c']`).hide()
-    $(`[fill='#d62728']`).hide()
-
-}
-function showOnlyGreen()
-{
-
-    $(`[fill='#2ca02c']`).show()
-    $(`[fill='#d62728']`).hide()
-    $(`[fill='#ff7f0e']`).hide()
-    $(`[fill='#1f77b4']`).hide()
-}
-function showOnlyRed()
-{
-
-    $(`[fill='#d62728']`).show()
-    $(`[fill='#2ca02c']`).hide()
-    $(`[fill='#ff7f0e']`).hide()
-    $(`[fill='#1f77b4']`).hide()
-
-}
-
-function showAll()
-{
-
-    $(`[fill='#d62728']`).show()
-    $(`[fill='#2ca02c']`).show()
-    $(`[fill='#ff7f0e']`).show()
-    $(`[fill='#1f77b4']`).show()
-
-}
-
-
-
+$("head").append('<script type="text/javascript" src="js/scripts.js"></script>');
 
       const xValue = d => d.SelfReportTotalAppMins;
       const xLabel = 'Total time spent';
@@ -202,7 +121,6 @@ function showAll()
         }
 
         $("body > svg > g > g:nth-child(3) > g > g:nth-child(1)").hover(function() {
-        console.log("hello world")
           showOnlyBlue()
         });
 
@@ -225,13 +143,3 @@ function showAll()
 
       });
 
-
-
-
-    </script>
-
-    <script>
-
-    </script>
-  </body>
-</html>
