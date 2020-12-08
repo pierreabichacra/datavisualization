@@ -36,23 +36,56 @@
       font-family: sans-serif;
     }
 
-    .blue{background-color: blue;}
-    .green{background-color: green;}
-    .red{background-color: red;}
-    .orange{background-color: orange;}
-    .blue, .green, .red, .orange {color: white;}
-    button {padding: 5px;}
+    .blue {
+      background-color: blue;
+    }
 
+    .locksUnlocksCircleTip {
+    position: absolute;
+    visibility: hidden;
+    background-color: white
+}
+
+    .green {
+      background-color: green;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .orange {
+      background-color: orange;
+    }
+
+    .blue,
+    .green,
+    .red,
+    .orange {
+      color: white;
+    }
+
+    button {
+      outline: none;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 45px;
+    }
   </style>
 </head>
 
 <body>
-    <h3>Emotions</h3>
-    <button onclick="showOnlyBlue()" class="blue">Happy</button>
-    <button onclick="showOnlyRed()" class="red">SomeWhat Happy</button>
-    <button onclick="showOnlyGreen()" class="green">SomeWhat UnHappy</button>
-    <button onclick="showOnlyOrange()" class="orange">UnHappy</button>  
-    <button type="reset" onclick="showAll()">reset</button>
+  <h3>Emotions</h3>
+  <button onclick="showOnlyBlue()" class="blue">Happy</button>
+  <button onclick="showOnlyRed()" class="red">SomeWhat Happy</button>
+  <button onclick="showOnlyGreen()" class="green">SomeWhat UnHappy</button>
+  <button onclick="showOnlyOrange()" class="orange">UnHappy</button>
+  <button type="reset" onclick="showAll()">reset</button>
 
   <svg width="1600" height="700"></svg>
   <script>
@@ -69,6 +102,9 @@
     const height = svg.attr('height');
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
+
+    var tip = d3.select('body').append("div")
+      .attr("class", "locksUnlocksCircleTip");
 
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
@@ -93,7 +129,7 @@
       .style('text-anchor', 'middle')
       .text(yLabel);
 
-      console.log(colorLabel)
+    console.log(colorLabel)
     colorLegendG.append('text')
       .attr('class', 'legend-label')
       .attr('x', -30)
@@ -107,7 +143,7 @@
 
     const xAxis = d3.axisBottom()
       .scale(xScale)
-      .tickPadding(15)
+      .tickPadding(7)
       .tickSize(-innerHeight);
 
     const yAxis = d3.axisLeft()
@@ -143,7 +179,25 @@
         .attr('cy', d => yScale(yValue(d)))
         .attr('fill', d => colorScale(colorValue(d)))
         .attr('fill-opacity', 0.6)
-        .attr('r', 8);
+        .attr('r', 8)
+        .on("mouseover", function () {
+          tip.style("display", null);
+        })
+        .on("mouseout", function () {
+          tip.style("display", "none");
+        })
+        .on("mousemove", function (d) {
+          return tip
+            .style("left", d3.event.pageX + "px")
+            .style("top", d3.event.pageY + 10 + "px")
+            .style("visibility", "visible")
+            .html(function () {
+              return '<div style = "font-size: smaller"><b>Locks</b>' +
+                '</p><p>Time spent on messaging apps: ' + d.SelfReportMessagingMins +
+                "</p><p>Total time Spent: " + d.SelfReportTotalAppMins
+              '</div>';
+            })
+        });
 
       xAxisG.call(xAxis);
       yAxisG.call(yAxis);
@@ -153,33 +207,26 @@
     });
 
     $(function () {
-      setTimeout(function(){ 
-        
-
-
+      setTimeout(function () {
         let colortext = ""
-      let emotionState = ""
-      for (let index = 0; index < 5; index++) {
-        if (index == 4) {
-          $(`body > svg > g > g:nth-child(3) > g > g:nth-child(5)`).remove()
-          $(`[fill='#9467bd']`).remove()
+        let emotionState = ""
+        for (let index = 0; index < 5; index++) {
+          if (index == 4) {
+            $(`body > svg > g > g:nth-child(3) > g > g:nth-child(5)`).remove()
+            $(`[fill='#9467bd']`).remove()
+          }
+          let elmt = $(`body > svg > g > g:nth-child(3) > g > g:nth-child(${index}) >  text`)
+
+          if (elmt.text() == "1") {
+            elmt.text("Happy")
+          } else if (elmt.text() == "2") {
+            elmt.text("SomeWhat Happy")
+          } else if (elmt.text() == "3") {
+            elmt.text("SomeWhat UnHappy")
+          } else if (elmt.text() == "4") {
+            elmt.text("UnHappy")
+          }
         }
-        let elmt = $(`body > svg > g > g:nth-child(3) > g > g:nth-child(${index}) >  text`)
-
-        if (elmt.text() == "1") {
-          elmt.text("Happy")
-        } else if (elmt.text() == "2") {
-          elmt.text("SomeWhat Happy")
-        } else if (elmt.text() == "3") {
-          elmt.text("SomeWhat UnHappy")
-        } else if (elmt.text() == "4") {
-          elmt.text("UnHappy")
-        }
-      }
-
-
-
-
       }, 3000);
 
 
@@ -213,7 +260,7 @@
 
     });
   </script>
-<script src="js/scripts.js"></script>
+  <script src="js/scripts.js"></script>
 </body>
 
 </html>
