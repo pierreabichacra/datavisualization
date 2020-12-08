@@ -26,8 +26,8 @@ models = models.map(i => {
     return i;
 });
 
-var legend_colors = [["Eastern", "ffbf69"],
-["Western", "cbf3f0"]];
+var legend_colors = [["Eastern", "#ffbf69"],
+["Western", "#cbf3f0"]];
 
 var container = d3.select('#d3id'),
     width = 700,
@@ -75,19 +75,19 @@ emotion.selectAll(".bar.east_count")
     .enter()
     .append("rect")
     .attr("class", "bar east_count")
-    .style("fill", "ffbf69")
+    .style("fill", "#ffbf69")
     .attr("x", d => xScale1('east_count'))
     .attr("y", d => yScale(d.east_count))
     .attr("width", xScale1.bandwidth())
     .on("mouseover", function (d) {
-        d3.select(this).style("fill", "ff9f1c"); return tooltip.style("visibility", "visible").text(d.emotion + " " + d.east_count + ", From total: " + (parseFloat(d.east_count * 100 / 141).toFixed(1)) + "%");
+        d3.select(this).style("fill", "#ff9f1c"); return tooltip.style("visibility", "visible").text(d.emotion + " " + d.east_count + ", From total: " + (parseFloat(d.east_count * 100 / 141).toFixed(1)) + "%");
     })
     .on("mousemove", function (d) {
         return tooltip.style("top",
             (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px").text(d.emotion + " " + d.east_count + ", From total: " + (parseFloat(d.east_count * 100 / 141).toFixed(1)) + "%");
     })
     .on("mouseout", function (d) {
-        d3.select(this).style("fill", "ffbf69");
+        d3.select(this).style("fill", "#ffbf69");
         return tooltip.style("visibility", "hidden");
     })
     .attr("height", d => {
@@ -99,19 +99,19 @@ emotion.selectAll(".bar.west_count")
     .enter()
     .append("rect")
     .attr("class", "bar west_count")
-    .style("fill", "cbf3f0")
+    .style("fill", "#cbf3f0")
     .attr("x", d => xScale1('west_count'))
     .attr("y", d => yScale(d.west_count))
     .attr("width", xScale1.bandwidth())
     .on("mouseover", function (d) {
-        d3.select(this).style("fill", "2ec4b6"); return tooltip.style("visibility", "visible").text(d.emotion + " " + d.west_count + ", From total: " + (parseFloat(d.west_count * 100 / 249).toFixed(1)) + "%");
+        d3.select(this).style("fill", "#2ec4b6"); return tooltip.style("visibility", "visible").text(d.emotion + " " + d.west_count + ", From total: " + (parseFloat(d.west_count * 100 / 249).toFixed(1)) + "%");
     })
     .on("mousemove", function (d) {
         return tooltip.style("top",
             (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px").text(d.emotion + " " + d.west_count + ", From total: " + (parseFloat(d.west_count * 100 / 249).toFixed(1)) + "%");
     })
     .on("mouseout", function (d) {
-        d3.select(this).style("fill", "cbf3f0");
+        d3.select(this).style("fill", "#cbf3f0");
         return tooltip.style("visibility", "hidden");
     })
     .attr("height", d => {
@@ -133,10 +133,10 @@ svg.append("circle")
     .attr("cx", 620)
     .attr("cy", 0)
     .attr("r", 6)
-    .style("fill", "ff9f1c")
+    .style("fill", "#ff9f1c")
 // .attr("transform", `translate(0,${height})`);
 
-svg.append("circle").attr("cx", 620).attr("cy", 30).attr("r", 6).style("fill", "2ec4b6")
+svg.append("circle").attr("cx", 620).attr("cy", 30).attr("r", 6).style("fill", "#2ec4b6")
 svg.append("text").attr("x", 650).attr("y", 0).text("Eastern").style("font-size", "15px").attr("alignment-baseline", "middle")
 svg.append("text").attr("x", 650).attr("y", 30).text("Western").style("font-size", "15px").attr("alignment-baseline", "middle")
 
