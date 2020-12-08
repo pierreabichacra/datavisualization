@@ -68,7 +68,7 @@ d3.json("json/genderProcessed.json", function (data) {
             })
             .on('mousemove', function (d) {
                 tooltip.style('top', (d3.event.layerY + 10) + 'px')
-                    .style('left', (d3.event.layerX + 150) + 'px');
+                    .style('left', (d3.event.layerX + 40) + 'px');
             });
 
         svg.append('text')
