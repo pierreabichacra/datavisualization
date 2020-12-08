@@ -41,6 +41,7 @@
     .red{background-color: red;}
     .orange{background-color: orange;}
     .blue, .green, .red, .orange {color: white;}
+    button {padding: 5px;}
 
   </style>
 </head>
@@ -152,7 +153,11 @@
     });
 
     $(function () {
-      let colortext = ""
+      setTimeout(function(){ 
+        
+
+
+        let colortext = ""
       let emotionState = ""
       for (let index = 0; index < 5; index++) {
         if (index == 4) {
@@ -171,6 +176,13 @@
           elmt.text("UnHappy")
         }
       }
+
+
+
+
+      }, 3000);
+
+
 
       $("body > svg > g > g:nth-child(3) > g > g:nth-child(1)").hover(function () {
         print("hello blue")

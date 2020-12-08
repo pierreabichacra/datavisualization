@@ -7,7 +7,7 @@ var probabilities = {};
 document.getElementById("perhour").click();
 
 function EmotionTimesPerHour() {
-    d3.json('../json/EmotionTimesCheckPhonePerHour.json', function (data) {
+    d3.json('json/EmotionTimesCheckPhonePerHour.json', function (data) {
         var total = 0;
         probabilities = {
             1: 0,
@@ -37,7 +37,7 @@ function EmotionTimesPerHour() {
 
 
 function EmotionTimesPerDay() {
-    d3.json('../json/EmotionTimeUsePhonePerDay.json', function (data) {
+    d3.json('json/EmotionTimeUsePhonePerDay.json', function (data) {
 
         var total = 0;
         probabilities = {
