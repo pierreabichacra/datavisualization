@@ -192,7 +192,7 @@
             .style("top", d3.event.pageY + 10 + "px")
             .style("visibility", "visible")
             .html(function () {
-              return '<div style = "font-size: smaller"><b>Locks</b>' +
+              return '<div style = "font-size: smaller"><b>Details</b>' +
                 '</p><p>Time spent on messaging apps: ' + d.SelfReportMessagingMins +
                 "</p><p>Total time Spent: " + d.SelfReportTotalAppMins
               '</div>';
@@ -227,11 +227,7 @@
             elmt.text("UnHappy")
           }
         }
-      }, 3000);
-
-
-
-      $("body > svg > g > g:nth-child(3) > g > g:nth-child(1)").hover(function () {
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(1)").hover(function () {
         showOnlyBlue()
       });
 
@@ -256,6 +252,11 @@
         let x = $(this).attr("cx")
         let y = $(this).attr("cy")
       })
+      }, 3000);
+
+
+
+
 
     });
   </script>

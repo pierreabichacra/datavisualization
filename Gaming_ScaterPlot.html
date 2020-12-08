@@ -31,10 +31,10 @@
     }
 
     .locksUnlocksCircleTip {
-    position: absolute;
-    visibility: hidden;
-    background-color: white
-}
+      position: absolute;
+      visibility: hidden;
+      background-color: white
+    }
 
     .axis-label,
     .legend-label {
@@ -42,11 +42,30 @@
       font-size: 20pt;
       font-family: sans-serif;
     }
-    .blue{background-color: blue;}
-    .green{background-color: green;}
-    .red{background-color: red;}
-    .orange{background-color: orange;}
-    .blue, .green, .red, .orange {color: white;}
+
+    .blue {
+      background-color: blue;
+    }
+
+    .green {
+      background-color: green;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .orange {
+      background-color: orange;
+    }
+
+    .blue,
+    .green,
+    .red,
+    .orange {
+      color: white;
+    }
+
     button {
       outline: none;
       border: none;
@@ -66,7 +85,7 @@
   <button onclick="showOnlyBlue()" class="blue">Happy</button>
   <button onclick="showOnlyRed()" class="red">SomeWhat Happy</button>
   <button onclick="showOnlyGreen()" class="green">SomeWhat UnHappy</button>
-  <button onclick="showOnlyOrange()" class="orange">UnHappy</button>  
+  <button onclick="showOnlyOrange()" class="orange">UnHappy</button>
   <button type="reset" onclick="showAll()">reset</button>
 
 
@@ -178,7 +197,7 @@
             .style("top", d3.event.pageY + 10 + "px")
             .style("visibility", "visible")
             .html(function () {
-              return '<div style = "font-size: smaller"><b>Locks</b>' +
+              return '<div style = "font-size: smaller"><b>Details</b>' +
                 '</p><p>Time spent on gaming apps: ' + d.SelfReportGamingMins +
                 "</p><p>Total time Spent: " + d.SelfReportTotalAppMins
               '</div>';
@@ -217,27 +236,28 @@
             elmt.text("UnHappy")
           }
         }
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(1)").hover(function () {
+          showOnlyBlue()
+        });
+
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(2)").hover(function () {
+          showOnlyOrange()
+        });
+
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(3)").hover(function () {
+          showOnlyGreen()
+        });
+
+        $("body > svg > g > g:nth-child(3) > g > g:nth-child(4)").hover(function () {
+          showOnlyRed()
+        });
+
+        const allColorSelectors = "body > svg > g > g:nth-child(3) > g > g:nth-child(1), body > svg > g > g:nth-child(3) > g > g:nth-child(2), body > svg > g > g:nth-child(3) > g > g:nth-child(3), body > svg > g > g:nth-child(3) > g > g:nth-child(4)";
+
+        $(`${allColorSelectors}`).mouseleave(function () { showAll() });
       }, 3000);
 
-      $("body > svg > g > g:nth-child(3) > g > g:nth-child(1)").hover(function () {
-        showOnlyBlue()
-      });
 
-      $("body > svg > g > g:nth-child(3) > g > g:nth-child(2)").hover(function () {
-        showOnlyOrange()
-      });
-
-      $("body > svg > g > g:nth-child(3) > g > g:nth-child(3)").hover(function () {
-        showOnlyGreen()
-      });
-
-      $("body > svg > g > g:nth-child(3) > g > g:nth-child(4)").hover(function () {
-        showOnlyRed()
-      });
-
-      const allColorSelectors = "body > svg > g > g:nth-child(3) > g > g:nth-child(1), body > svg > g > g:nth-child(3) > g > g:nth-child(2), body > svg > g > g:nth-child(3) > g > g:nth-child(3), body > svg > g > g:nth-child(3) > g > g:nth-child(4)";
-
-      $(`${allColorSelectors}`).mouseleave(function () { showAll() });
 
 
     });
