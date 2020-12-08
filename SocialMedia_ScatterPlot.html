@@ -28,10 +28,25 @@
         font-size: 20pt;
         font-family: sans-serif;
       }
+      .blue{background-color: blue;}
+    .green{background-color: green;}
+    .red{background-color: red;}
+    .orange{background-color: orange;}
+    .blue, .green, .red, .orange {color: white;}
+
+
 
     </style>
   </head>
   <body>
+    <h3>Emotions</h3>
+    <button onclick="showOnlyBlue()" class="blue">Happy</button>
+    <button onclick="showOnlyRed()" class="red">SomeWhat Happy</button>
+    <button onclick="showOnlyGreen()" class="green">SomeWhat UnHappy</button>
+    <button onclick="showOnlyOrange()" class="orange">UnHappy</button>  
+    <button type="reset" onclick="showAll()">reset</button>
+
+
     <svg width="1600" height="700"></svg>
     <script>
 function showOnlyBlue()
